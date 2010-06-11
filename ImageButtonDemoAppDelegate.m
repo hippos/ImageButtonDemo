@@ -76,7 +76,7 @@
 
 - (void)changeIcon:(id)sender
 {
-  NSInteger   tag       = [(NSMenuItem *)sender tag] - 1;
+  NSInteger   tag       = [(NSMenuItem *)sender tag];
   
   NSImage    *iconimage =
     [[NSWorkspace sharedWorkspace]

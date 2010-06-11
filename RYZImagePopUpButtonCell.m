@@ -167,7 +167,7 @@ untilMouseUp
     }
   }
   
-  NSLog(@"trackingResult: %d", trackingResult);
+  DLog(@"trackingResult: %d", trackingResult);
   return trackingResult;
 }
 
@@ -229,7 +229,7 @@ untilMouseUp
     [_buttonCell setShowsFirstResponder: NO];
   }
 
-  NSLog(@"cellFrame: %@  selectedItem: %@", NSStringFromRect(cellFrame), [[self selectedItem] title]);
+  DLog(@"cellFrame: %@  selectedItem: %@", NSStringFromRect(cellFrame), [[self selectedItem] title]);
 
   [_buttonCell drawWithFrame: cellFrame inView: controlView];
 }
@@ -237,7 +237,7 @@ untilMouseUp
 
 - (void) highlight:(BOOL)flag withFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-  NSLog(@"highlight: %d", flag);
+  DLog(@"highlight: %d", flag);
 
   [_buttonCell highlight: flag withFrame: cellFrame inView: controlView];
   [super highlight: flag withFrame: cellFrame inView: controlView];

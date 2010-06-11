@@ -2,7 +2,7 @@
 //  ImageButtonDemoAppDelegate.m
 //  ImageButtonDemo
 //
-//  Created by kazuot on 10/06/09.
+//  Created by hippos on 10/06/09.
 //  Copyright 2010 hippos-lab.com. All rights reserved.
 //
 
@@ -35,9 +35,7 @@
            [NSNumber numberWithInteger:kInternetLocationHTTPIcon], nil];
 
   NSImage *image =
-    [[[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode([[icons objectAtIndex:0] integerValue])]
-     retain
-    ];
+    [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode([[icons objectAtIndex:0] integerValue])];
 
   imagePopUpButton =
     [[RYZImagePopUpButton alloc] initWithFrame:NSMakeRect(3.75, NSHeight(contentViewFrame) - 42, 42, 42)];
@@ -47,14 +45,12 @@
   [imagePopUpButton setShowsMenuWhenIconClicked: YES];
 
   NSMenuItem *menuItem = nil;
-  NSInteger   tag      = 1;
+  NSInteger   tag      = 0;
 
   for (NSNumber *icon in icons)
   {
     menuItem = [[NSMenuItem alloc] initWithTitle: @""  action:@selector(changeIcon:)keyEquivalent: @""];
-    image    = [[[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode([icon integerValue])]
-             retain
-               ];
+    image    = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode([icon integerValue])];
 
     [image setSize: NSMakeSize(kIconSize, kIconSize)];
     [menuItem setImage: image];
@@ -67,7 +63,15 @@
 
   [[iview contentView] addSubview:imagePopUpButton];
   [imagePopUpButton setFocusRingType:NSFocusRingTypeNone];
+  
+  [imagePopUpButton retain];
   [icons retain];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
+  [imagePopUpButton release];
+  [icons release];
 }
 
 - (void)changeIcon:(id)sender
@@ -75,8 +79,8 @@
   NSInteger   tag       = [(NSMenuItem *)sender tag] - 1;
   
   NSImage    *iconimage =
-    [[[NSWorkspace sharedWorkspace]
-      iconForFileType:NSFileTypeForHFSTypeCode([[icons objectAtIndex:tag] integerValue])] retain];
+    [[NSWorkspace sharedWorkspace]
+      iconForFileType:NSFileTypeForHFSTypeCode([[icons objectAtIndex:tag] integerValue])];
   [iconimage setSize:NSMakeSize(kIconSize, kIconSize)];
 
   [imagePopUpButton setIconImage:iconimage];

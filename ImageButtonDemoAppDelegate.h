@@ -2,7 +2,7 @@
 //  ImageButtonDemoAppDelegate.h
 //  ImageButtonDemo
 //
-//  Created by kazuot on 10/06/09.
+//  Created by hippos on 10/06/09.
 //  Copyright 2010 hippos-lab.com. All rights reserved.
 //
 
